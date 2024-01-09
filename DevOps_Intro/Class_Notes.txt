@@ -430,6 +430,13 @@ Day 2 - 9th Jan.
 			- Create Free-tier Account on AWS Cloud Platform
 				12 Months - Create Virtual Machines(EC2 Instances) - Linux
 					Install and Manage all the DevOps Tools.
+					https://aws.amazon.com/console/
+					
+						Sign_in using root user Id ; <email_id> & Password
+					
+					- Active Email 
+					- Mobile Number 
+					- Active Credit/Debit Card - Eligible for International Transactions
 					
 			- Create DockerHub account 
 			
@@ -437,4 +444,4 @@ Day 2 - 9th Jan.
 			
 			- Visual Studio Code - IDE
 			
-		Scripting(Self-paced) ::: Shell Scripting, Groovy Scripting, Yaml Scripting, Python Scripting.
+		Scripting(Self-paced) ::: Shell Scripting, Groovy Scripting, Yaml Scripting, Python Scripting.		
