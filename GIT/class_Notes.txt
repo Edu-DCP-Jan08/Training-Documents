@@ -686,8 +686,342 @@ Day 3 - 10th Jan.
 506  mkdir repo1
 507  cd repo1/
 
+####################
+Day 4 - 11th Jan.
+####################
 	 
+			Working with GIT CLI Commands ; 
 			
+			How to create Local git repo 
+			
+			Misc. Git Command
+				
+				
+			git init 		--> used to initialize a Local Repository, create a default branch called (master/main)
+								create .GIT_Directory
+				
+			Local Machine																	<====> 		Remote Server
+			
+			Working_Directory		--> Staging/Index_Area		--> Local Repository						Remote Repository
+			
+			java_project 
+				index.jsp	 ---------> staging area	---------->	local repo.				--------->			index.jsp_v1.0 
+								add 					  commit		index.jsp_v1.0		  push
+			
+			
+			git init 		--> used to initialize a Local Repository, create a default branch called (master/main)
+								create .GIT_Directory
+			
+			create a file in working directory 
+			
+			git add index.html 
+			
+			git status 				== Is used to get the current status of the repository
+			
+			git commit -m "commit message" 	==
+				
+			git log 				== used to get the list of commits
+				
+				
+			project_folder	- repo
+				index.html 
+				sigin.java
+				
+			git configurations :::
+			
+			git init 
+			
+			Global Config :							# this is applicable for all the repositories
+			git config --global user.name "Loksai"
+			git config --global user.email "Loksai@jhgjh.com"
+
+			Local Config :							# this is applicable for a specific repository
+			git config user.name "Loksai"
+			git config user.email "Loksai@jhgjh.com"
+
+			echo "record" > s1.xt 
+			
+			git add .
+			
+			git commit -m "s1.txt"
+			Tracking the Changes ::
+			
+			git config list 
+				
+			ls 					# used get the list of files/folders from working dir.
+			
+			git ls-files		# used to get the list of files tracked by git.
+			
+			
+			git add <file_name>
+			
+			git add <file1> <file2>
+			
+			git add *.txt *.java 
+			
+			git add .
+			
+			Unstaging the Changes ::
+			
+			git rm --cached <file1.txt>		# unstage a file, the file will be back to working dir.
+			git rm -f <file_name>			# unstage a file, and remove from working dir.
+			
+			
+			git commit -m <valid commit message>
+			
+			REL012024
+			
+			git commit -m "CR0124 - Updated app property file"		# Best Practise!
+			
+			
+			git log 
+			
+			git log --oneline 
+			
+			git log -2 
+			
+			git log --stat 
+				
+			git show <commit_id>
+
+
+			git Reset / Revert :::
+			
+				Undo the commits!
+				
+				git reset ::
+				
+						- It is used to undo the changes
+						- The HEAD Pointer will be moved to the previous commit 
+						- Reset Action will not create and New commit.
+						- As a best practise, reset is not recommended in Shared Repositories. 
+						
+						git reset <reset_option> <Prev_commit_id>
+						
+						git reset --soft ::
+						
+									The changes will be moved back to staging area.
+									The HEAD Pointer will be pointing to the previous commit.
+									The Changes will be removed from Local Repository
+									The Changes will be available in both staging area as well as in the working directory.
+									
+									
+						
+						git reset --mixed 			# Default 
+									The changes will be moved back to working directory.
+									The HEAD Pointer will be pointing to the previous commit.
+									Changes will be removed from local repository and Staging area.
+									The Changes will be available only in the working directory.
+									
+
+						
+						git reset --hard 
+									
+									The HEAD Pointer will be pointing to the previous commit.
+									Changes will be permanently removed from local repository, Staging area as well as from working directory.
+									Its a permanent deletion.
+									
+  501  cd d:
+  502  cd DCP-Jan08/
+  503  mkdir projrepo1
+  504  cd projrepo1/
+  505  clear
+  506  ls
+  507  ls -a
+  508  ls
+  509  clear
+  510  git init
+  511  ls
+  512  ls -a
+  513  cd .git/
+  514  ls
+  515  cd ..
+  516  clear
+  517  ls
+  518  echo "Hello"
+  519  echo "record1" >> index.html
+  520  ls
+  521  cat index.html
+  522  git status
+  523  git add index.html
+  524  git status
+  525  git commit -m "Created Index.html"
+  526  git status
+  527  git log
+  528  cd ..
+  529  mkdir projrepo2
+  530  cd projrepo2
+  531  clear
+  532  git init
+  533  git status
+  534  echo "rec1" >> file1.txt
+  535  git status
+  536  git add file1.txt
+  537  git status
+  538  git commit -m "created file1.txt"
+  539  git status
+  540  git log
+  541  echo "rec1" >> file2.txt
+  542  git status
+  543  git add file2.txt
+  544  git commit -m "created file2.txt"
+  545  git status
+  546  git log
+  547  git log
+  548  cd .git/
+  549  ls
+  550  cd ..
+  551  clear
+  552  ls
+  553  git log
+  554  cat file1.txt
+  555  echo "Rec2" >> file1.txt
+  556  cat file1.txt
+  557  git status
+  558  git add file1.txt
+  559  git commit -m "updated file1.txt"
+  560  git log
+  561  clear
+  562  git log
+  563  git config user.name "Loksai"
+  564  echo "rec1" >> f3.txt
+  565  git add .
+  566  git commit -m "created f3.txt"
+  567  clear
+  568  git log
+  569  cd ..
+  570  cd projrepo1/
+  571  git log
+  572  echo "rec2" >> index.html
+  573  git add index.html
+  574  git commit -m " Updated Index.html"
+  575  git log
+  576  clear
+  577  ls
+  578  echo "rec1" >> f1.txt
+  579  ls
+  580  git ls-files
+  581  git status
+  582  git add f1.txt
+  583  git status
+  584  git ls-files
+  585  clear
+  586  git status
+  587  git commit -m "created f1.txt"
+  588  clear
+  589  git status
+  590  clear
+  591  ls
+  592  clear
+  593  echo "rec1" >> a1.txt
+  594  echo "rec1" >> a2.txt
+  595  echo "rec1" >> a3.txt
+  596  ls
+  597  echo "rec1" >> s1.java
+  598  echo "rec1" >> s2.java
+  599  echo "rec1" >> l1.md
+  600  echo "rec1" >> l2.md
+  601  echo "rec1" >> l2.doc
+  602  echo "rec1" >> e1.jsp
+  603  echo "rec1" >> e2.jsp
+  604  clear
+  605  ls
+  606  git status
+  607  git add a1.txt l1.md
+  608  git status
+  609  git add *.java
+  610  git status
+  611  git add .
+  612  git status
+  613  git rm --cached a1.txt
+  614  git status
+  615  git ad .
+  616  git add .
+  617  clear
+  618  git status
+  619  git rm -f a1.txt
+  620  git status
+  621  ls
+  622  git commit -m "created sample files"
+  623  git log
+  624  clear
+  625  git log
+  626  git log --oneline
+  627  git log --oneline -2
+  628  git log --oneline -3
+  629  git log -2
+  630  git log -1
+  631  git log --stat
+  632  clear
+  633  git log --oneline
+  634  git show 62bcff8
+  635  clear
+  636  echo "adfasf'
+"
+  637  clear
+  638  touch g1.txt
+  639  ls
+  640  clear
+  641  git status
+  642  cd ..
+  643  clear
+  644  mkdir projrepo3
+  645  cd projrepo3
+  646  git init
+  647  echo "rec1" >> f1.txt
+  648  git add .
+  649  git commit -m "CM1"
+  650  echo "rec1" >> f2.txt
+  651  git add .
+  652  git commit -m "CM2"
+  653  echo "rec1" >> f3.txt
+  654  git add .
+  655  git commit -m "CM3"
+  656  echo "rec1" >> f4.txt
+  657  git add .
+  658  git commit -m "CM4"
+  659  echo "rec1" >> f5.txt
+  660  git add .
+  661  git commit -m "CM5"
+  662  clear
+  663  git log --oneline
+  664  ls
+  665  git ls-files
+  666  git status
+  667  git reset --soft a2a535c
+  668  git status
+  669  git ls-files
+  670  ls
+  671  git log --oneline
+  672  git commit -m "CM5.1"
+  673  git status
+  674  git log --oneline
+  675  ls
+  676  git ls-files
+  677  git reset --mixed a2a535c
+  678  git status
+  679  git ls-files
+  680  ls
+  681  git log --oneline
+  682  git add .
+  683  git commit -m "CM5.2"
+  684  git status
+  685  ls
+  686  git ls-files
+  687  git log --oneline
+  688  git reset --hard a2a535c
+  689  git status
+  690  ls
+  691  git ls-files
+  692  git log --oneline
+  693  git reset --hard f633618
+  694  git log --oneline
+  695  ls
+  696  history
+				
+Next :::
+			git revert :::
+		
 			
 				
 			
