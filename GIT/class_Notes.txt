@@ -1023,6 +1023,347 @@ Next :::
 			git revert :::
 		
 			
+####################
+Day 5 - 12th Jan.
+####################
+
+			git revert :::
+			
+				- Git revert is used to undo a specific commit 
+				- revert action will create a new commit point for tracking.
+				- git Revert is strongly recommended in the shared repositories.
+				- git revert <===> git reset --hard, only difference is revert will maintain the commit history. But git reset will not have any commit point to track the changes.
+				- git revert needs a commit message.
+				
+				syntax: 
+				
+						git revert <prev_commit_id>
+						
+						commit message is expected
+						
+						
+			git ignore!
+
+			Local Machine :											==> push to Remote repo
+				Project_Workspace -- Java web application
+					src/main/java/index.jsp
+					src/main/test/testcase1.java
+					application.properties 
+					db_credentials
+					secrets 
+					target/
+						*.war 
+					
+				GIT IGNORE is used to ignore the files/folders from tracking.
+				As a best practise, we shd create .gitignore file and have the file patterns to be ignored.
+				
+				touch command 
+				echo command 
+				
+				vi editor to create a file
+					
+					
+					vi .gitignore 
+						press - i 					# to goto insert mode in vi editor
+						press - esc :wq 			# save and exit from VI editor 
+						press - esc :q!				# exit from vi editor without saving the changes 
+						
+			git commit :::
+				
+				git commit -m "CR0124 - Updated app property file"		# Best Practise!
+				
+				git commit --amend -m "CR1002 - create l1.txt"
+				
+		
+		Git Branching 
+		
+		Git Branching Strategies
+			
+			Git Branches are the logical copy of the repository
+			Used to perform parallel development
+			
+			git branch			# get the list of branches 
+			
+			git switch -c <new_branch name>
+			
+			git checkout -b (new_branch name>
+			
+			git branch <new_branch name>
+				
+		Git Branching Strategies		# it is used to maintain the integrity of Master Branch 
+
+			Repo1 :
+			
+				master : cm1,cm2,cm3 		# f1,f2,f3
+				
+	Scenario 1 :: -- independent developer 
+	
+			Repo1 :
+
+				master  - c1,c2,c3 - l1.txt 
+				
+						- c1,c2,c3,f1c1,f1cm2
+				
+					feature1 - c1,c2,c3,f1c1,f1cm2 
+				
+				
+	Scenario 2 :: -- independent developer can do parallel development 
+	
+			Repo1 :
+
+				master  - c1,c2,c3 - l1.txt 
+				
+						c1,c2,c3,Developer_Branch_Changes
+				
+					Developer_Branch -  c1,c2,c3
+									c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2
+						feature1 - c1,c2,c3,f1c1,f1cm2 
+						feature2 - c1,c2,c3,f2c1,f2cm2 			
+				
+				
+	Scenario 3 :: 		- Multiple users to do parallel development
+	
+			Repo1 :
+
+				master  - c1,c2,c3 - l1.txt 
+				
+							c1,c2,c3,Developer_Branch1_Changes,Developer_Branch2_Changes
+				
+					Developer_Branch1 - c1,c2,c3 
+									c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2
+									
+						feature1 - c1,c2,c3,f1c1,f1cm2 
+						feature2 - c1,c2,c3,f2c1,f2cm2 				
+				
+					Developer_Branch2 - c1,c2,c3
+									c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2,f3c1,f3cm2 	
+									
+						feature1 - c1,c2,c3,f1c1,f1cm2 
+						feature2 - c1,c2,c3,f2c1,f2cm2 				
+						feature3 - c1,c2,c3,f3c1,f3cm2 				
+									
+	Scenario 3.1 :: 		- Multiple users to do parallel development
+	
+			Repo1 :
+
+				master  - c1,c2,c3 - l1.txt 
+				
+							c1,c2,c3,Integration_Branch_Changes
+				
+					Integration_Branch : c1,c2,c3 
+									c1,c2,c3,Developer_Branch1_Changes,Developer_Branch2_Changes
+					
+						Developer_Branch1 - c1,c2,c3 
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+					
+						Developer_Branch2 - c1,c2,c3
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2,f3c1,f3cm2 	
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+							feature3 - c1,c2,c3,f3c1,f3cm2 				
+									
+	Scenario 4 :: 		- Multiple Teams to do parallel development
+	
+			Repo1 :
+
+				master  - c1,c2,c3,Changes_from_Team1&2		PROD_Version!
+				
+					Release_Branch : c1,c2,c3,App_Team1_Changes,App_Team1_Changes			# Conflicts can be addressed 
+				
+					Integration_Branch1 : c1,c2,c3 															# App_Team1
+									c1,c2,c3,Developer_Branch1_Changes,Developer_Branch2_Changes
+					
+						Developer_Branch1 - c1,c2,c3 
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+					
+						Developer_Branch2 - c1,c2,c3
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2,f3c1,f3cm2 	
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+							feature3 - c1,c2,c3,f3c1,f3cm2 				
+				
+					Integration_Branch2 : c1,c2,c3 															# App_Team2
+									c1,c2,c3,Developer_Branch1_Changes,Developer_Branch2_Changes
+					
+						Developer_Branch1 - c1,c2,c3 
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+					
+						Developer_Branch2 - c1,c2,c3
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2,f3c1,f3cm2 	
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+							feature3 - c1,c2,c3,f3c1,f3cm2 	
+
+		
+		Create the Branches :::
+		
+			git branch -- 
+			
+			Repo :
+			
+				master - cm1,cm2 
+
+				
+				
+				git switch -c feature1
+				
+					feature1 - cm1,cm2,f1c1,f1c2
+					
+				git switch master 						
+					
+				git merge feature1 			# should be executed from the target branch.
+		
+
+			git branch			# get the list of branches 
+			
+			git switch -c <new_branch name>	
+			
+			git checkout -b (new_branch name>
+			
+			git branch <new_branch1 name> <new_branch1 name>
+			
+  507  mkdir testrepo1
+  508  cd testrepo1/
+  509  clear
+  510  git init
+  511  echo "rec1" >> f1.txt
+  512  git add .
+  513  git commit -m "CM1"
+  514  echo "rec1" >> f2.txt
+  515  git add .
+  516  git commit -m "CM2"
+  517  echo "rec1" >> f3.txt
+  518  git add .
+  519  git commit -m "CM3"
+  520  echo "rec1" >> f4.txt
+  521  git add .
+  522  git commit -m "CM4"
+  523  clear
+  524  git log --oneline
+  525  ls
+  526  git ls-files
+  527  git status
+  528  git revert 5854ff9
+  529  git log --oneline
+  530  ls
+  531  git revert 1c7b747
+  532  git log --oneline
+  533  ls
+  534  git ls-files
+  535  clear
+  536  clear
+  537  cd ..
+  538  mkdir testrepo2
+  539  cd testrepo2
+  540  clear
+  541  git init
+  542  vi .gitignore
+  543  git status
+  544  ls
+  545  ls -a
+  546  git add .
+  547  git commit -m "Initial Commit - created .gitignore"
+  548  git status
+  549  ls
+  550  echo "rec1" >> l1.txt
+  551  git status
+  552  cat .gitignore
+  553  echo "rec1" >> file1.md
+  554  git status
+  555  git add .
+  556  git commit -m "created l1.txt"
+  557  clear
+  558  ls
+  559  git ls-files
+  560  git status
+  561  git log --oneline
+  562  git commit -m "CR1002 - create l1.txt"
+  563  git commit --amend -m "CR1002 - create l1.txt"
+  564  git log --oneline
+  565  clear
+  566  git branch
+  567  s
+  568  git log --oneline
+  569  ls
+  570  clear
+  571  git log --oneline
+  572  ls
+  573  gti status
+  574  git status
+  575  clear
+  576  git branch
+  577  git switch -c feature1
+  578  git switch master
+  579  clear
+  580  git log --oneline
+  581  git switch feature1
+  582  git log --oneline
+  583  ls
+  584  echo "Rec1" >> f1.txt
+  585  git status
+  586  git add .
+  587  git commit -m "created f1.txt from feature1"
+  588  ls
+  589  git log --oneline
+  590  echo "Rec1" >> f2.txt
+  591  git add
+  592  git add .
+  593  git commit -m "created f2.txt from feature1"
+  594  ls
+  595  git log --oneline
+  596  git switch master
+  597  git log --oneline
+  598  ls
+  599  git merge feature1
+  600  ls
+  601  git log --oneline
+  602  clear
+  603  git branch
+  604  git switch feature1
+  605  git branch
+  606  git switch master
+  607  clear
+  608  git branch
+  609  git branch feature2
+  610  git branch feature3
+  611  git branch
+  612  git checkout -b feature4
+  613  git branch
+  614  clear
+  615  ls
+  616  git log --oneline
+  617  echo "rec1" >> s1.txt
+  618  git add .
+  619  git status
+  620  git commit -m "created s1.txt"
+  621  clear
+  622  history
+			
+Next :::
+			
+			GIT Merge 
+			
+			Handling Merge Conflict 
+			
+			Rebase 
+			
+			squash
+			
+			stash 
+			
+			Remote Repositories ... 
 				
 			
 				
