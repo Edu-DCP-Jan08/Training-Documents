@@ -1365,7 +1365,390 @@ Next :::
 			
 			Remote Repositories ... 
 				
+####################
+Day 6 - 15th Jan.
+####################			
+
 			
+Next :::
+			
+			GIT Merge 
+			
+			Handling Merge Conflict 
+			
+			Rebase 
+			
+			squash
+			
+			stash 
+			
+			GIT Merge 
+			
+			Merge Conflict 
+
+				Both Feature1 & Feature2 are trying to update the same file at the same record into the target branch.
+		
+			Resolve the Merge Conflict :::
+			
+			1. Identify the file(s) causing Merge Conflict
+			2. Review the File Content & decide src changes to be retained/removed from the target branch file.
+			3. Edit(revome the Header & footer Tags) the file update the file.
+			4. git add and git commit 
+			
+			Handling the Conflicts :::
+			
+			Preventing the Conflicts :::
+			
+			Before we merge, we have to review the changes.
+			
+			GIT Rebase :::
+				- It is used to sync the changes from target branch with the current branch.
+				- It is used to prevent the Merge Conflicts in Target Branch.
+				- Maintains the Linear Commit History.
+				
+			
+			Repo :
+			
+				master - cm1,cm2 
+				
+				git switch -c feature1
+				
+					feature1 - cm1,cm2,f1c1,f1c2
+					
+				git switch master 						
+					
+				git merge feature1 			# should be executed from the target branch.
+				
+			Repo1: 
+			
+				master : cm1,cm2,cm3
+						 cm1,cm2,cm3,f1cm1,f1cm2,f1cm3			#Upon Merge from feature1 
+						
+						cm1,cm2,cm3,f2cm1,f2cm2,f2cm3
+						
+						
+						cm1,cm2,cm3,f1cm1,f1cm2,f1cm3,f2cm1,f2cm2,f2cm3	#Upon Merge from feature1 using Rebase!
+						
+					feature1 : cm1,cm2,cm3
+					
+							cm1,cm2,cm3,f1cm1,f1cm2,f1cm3
+							
+						git rebase master 
+					
+						git switch master 
+						
+						git merge feature1
+					
+					
+					feature2 : cm1,cm2,cm3
+						
+							cm1,cm2,cm3,f2cm1,f2cm2,f2cm3
+						
+						git rebase master 						# This command should be executed in current branch 
+							cm1,cm2,cm3,f1cm1,f1cm2,f1cm3,f2cm1,f2cm2,f2cm3
+							
+						git switch master 
+						
+						git merge feature2						# This command should be executed in target branch		
+		
+
+			GIT Squash :::
+			
+				It is used to combine the commits into a single commit.
+				
+			Repo1 :
+					master : cm1 
+					
+					cm1,f1cm1,f1cm2,f1cm3,f1cm4,.....................,f1cm100,f2cm1,f2cm2,f2cm3,f2cm4,.....................,f2cm100
+					
+					feature1 : cm1,f1cm1,f1cm2,f1cm3,f1cm4,.....................,f1cm100
+					
+					feature2 : cm1,f2cm1,f2cm2,f2cm3,f2cm4,.....................,f2cm100
+					
+					git merge --squash feature1 
+					
+					git commit -m "Combined Commits from Feature1"
+					
+				
+	Scenario 4 :: 		--> Multiple Teams to do parallel development
+	
+			Repo1 :
+
+				master : release --> 
+				
+				master  - c1,c2,c3,c4		PROD_Version!
+				
+					Release_Branch : c1,c2,c3,App_Team1_Changes,App_Team2_Changes			# Conflicts can be addressed 
+				
+					Integration_Branch1 : c1,c2,c3 															# App_Team1
+									c1,c2,c3,Developer_Branch1_Changes,Developer_Branch2_Changes
+					
+						Developer_Branch1 - c1,c2,c3 
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+					
+						Developer_Branch2 - c1,c2,c3
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2,f3c1,f3cm2 	
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+							feature3 - c1,c2,c3,f3c1,f3cm2 				
+				
+					Integration_Branch2 : c1,c2,c3 															# App_Team2
+									c1,c2,c3,Developer_Branch1_Changes,Developer_Branch2_Changes
+					
+						Developer_Branch1 - c1,c2,c3 
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+					
+						Developer_Branch2 - c1,c2,c3
+										c1,c2,c3,f1c1,f1cm2,f2c1,f2cm2,f3c1,f3cm2 	
+										
+							feature1 - c1,c2,c3,f1c1,f1cm2 
+							feature2 - c1,c2,c3,f2c1,f2cm2 				
+							feature3 - c1,c2,c3,f3c1,f3cm2 	
+					
+					
+					
+					cherry-pick
+					
+			git cherry-pick <commit_id>			# Without proper process definition DO NOT use git cherry-pick 
+			
+	
+		Git Stash ::::
+		
+			It is used to tomporarly save the uncommitted changes to a temp location in the repo.
+			
+			
+			git stash
+			
+			git stash save "Created l1.txt"
+			
+			git stash apply 		# It apply the last entry from the stash list back to staging area.
+
+			git stash apply stash@{1}  # apply a specific entry from stash list.
+			
+			
+			
+			git stash pop 			# It apply the last entry from the stash list back to staging area and Delete that entry from stash list.
+	
+			git stash pop stash@{1}  # apply a specific entry from stash list and  Delete that entry from stash list.
+			
+			
+			
+			git stash drop 			# It will delete the last entry from the stash list. 
+			
+			git stash drop stash@{1}  # drop a specific entry from stash list.
+			
+			git stash clear			# Remove all the entries from Stage list.
+
+  501  cd d:
+  502  cd DCP-Jan08/
+  503  ls
+  504  mkdir demorepo1
+  505  cd demorepo1/
+  506  clear
+  507  git init
+  508  ls
+  509  echo "rec1" >> f1.txt
+  510  git add .
+  511  git commit -m "cm1"
+  512  clear
+  513  git log -oneline
+  514  git log --oneline
+  515  git branch feature1
+  516  git branch feature2
+  517  git branch
+  518  git switch feature1
+  519  git log --oneline
+  520  ls
+  521  echo "rec12_from_feature2" >> f1.txt
+  522  git add .
+  523  git commit -m "Updated f1.txt from feature2"
+  524  ls
+  525  cat f1.txt
+  526  vi f1.txt
+  527  git add .
+  528  cat f1.txt
+  529  git commit -m "updated f1.txt from feature1"
+  530  clear
+  531  git log --oneline
+  532  cat f1.txt
+  533  git switch feature2
+  534  cat f1.txt
+  535  echo "rec2_from_feature2" >> f1.txt
+  536  cat f1.txt
+  537  git add .
+  538  git commit -m "Updated f1.txt from feature2"
+  539  clear
+  540  git switch master
+  541  git merge feature1
+  542  git log --oneline
+  543  cat f1.txt
+  544  git merge feature2
+  545  git status
+  546  ls
+  547  vi f1.txt
+  548  cat f1.txt
+  549  clear
+  550  git add .
+  551  git commit -m "Resolved Merge conflict"
+  552  git log --oneline
+  553  clear
+  554  cd ..
+  555  mdkir demorepo2
+  556  mkdir demorepo2
+  557  clear
+  558  cd demorepo2/
+  559  clear
+  560  git init
+  561  echo "rec1" >> s1.txt
+  562  git add .
+  563  git commit -m "cm1"
+  564  echo "rec1" >> s2.txt
+  565  git add .
+  566  git commit -m "cm2"
+  567  clear
+  568  git log --oneline
+  569  git branch feature1
+  570  git branch feature2
+  571  git switch feature1
+  572  git log --oneline
+  573  ls
+  574  echo "rec1" >> q1.txt
+  575  git add .
+  576  git commit -m "f1cm1"
+  577  echo "rec1" >> q2.txt
+  578  git add .
+  579  git commit -m "f1cm2"
+  580  clear
+  581  ls
+  582  git log --oneline
+  583  git rebase master
+  584  git switch master
+  585  git merge feature1
+  586  git log --oneline
+  587  ls
+  588  git switch feature2
+  589  ls
+  590  git log --oneline
+  591  echo "rec1" >> e1.txt
+  592  git add .
+  593  git commit -m "f2cm1"
+  594  echo "rec1" >> e2.txt
+  595  git add .
+  596  git commit -m "f2cm2"
+  597  echo "rec1" >> e3.txt
+  598  git add .
+  599  git commit -m "f2cm3"
+  600  git log --oneline
+  601  ls
+  602  git rebase master
+  603  git log --oneline
+  604  ls
+  605  clear
+  606  cd ..
+  607  mkdir demorepo3
+  608  cd demorepo3/
+  609  git init
+  610  clear
+  611  echo "rec1" >> q1.txt
+  612  git add .
+  613  git commit -m "CM1"
+  614  git log --oneline
+  615  git switch -c feature1
+  616  git log --oneline
+  617  clear
+  618  ls
+  619  echo "rec1" >> w1.txt
+  620  git add .
+  621  git commit -m "F1CM1"
+  622  echo "rec1" >> w2.txt
+  623  git add .
+  624  git commit -m "F1CM2"
+  625  echo "rec1" >> w3.txt
+  626  git add .
+  627  git commit -m "F1CM3"
+  628  echo "rec1" >> w4.txt
+  629  git add .
+  630  git commit -m "F1CM4"
+  631  echo "rec1" >> w5.txt
+  632  git add .
+  633  git commit -m "F1CM5"
+  634  clear
+  635  ls
+  636  git log --oneline
+  637  git status
+  638  git switch master
+  639  git merge --squash feature1
+  640  git status
+  641  git commit -m "Combined commits from feature1"
+  642  git status
+  643  git log --oneline
+  644  ls
+  645  git log --oneline
+  646  git show 6c621a2
+  647  clear
+  648  git branch
+  649  git log --oneline
+  650  git switch -c feature2
+  651  ls
+  652  git log --oneline
+  653  clear
+  654  echo "rec1" >> l1.txt
+  655  git add .
+  656  git switch master
+  657  git status
+  658  git switch feature2
+  659  git stash save "created l1.txt"
+  660  git status
+  661  ls
+  662  git stash list
+  663  echo "rec1" >> l2.txt
+  664  git add .
+  665  git status
+  666  git stash save "Created l2.txt"
+  667  git status
+  668  git stash list
+  669  git stash apply
+  670  git status
+  671  git stash list
+  672  git commit -m "created l2.txt"
+  673  git status
+  674  git stash list
+  675  git stash drop
+  676  git stash list
+  677  echo "rec1" >> f1.txt
+  678  git add
+  679  git add .
+  680  git stash save "for f1.txt"
+  681  echo "rec1" >> f2.txt
+  682  git add .
+  683  git stash save "for f2.txt"
+  684  clear
+  685  git stash list
+  686  git status
+  687  git stash pop
+  688  git stash list
+  689  git stash lsit
+  690  clear
+  691  git stash list
+  692  git stash clear
+  693  git stash list
+  694  echo "asdf" >> g1.txt
+  695  git add .
+  696  git status
+  697  git stash
+  698  git stash lsit
+  699  git stash list
+  700  ls
+  701  git status
+  702  history
+
 				
 			
 			
