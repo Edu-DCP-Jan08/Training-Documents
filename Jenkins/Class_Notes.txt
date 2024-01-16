@@ -1,0 +1,86 @@
+
+####################
+Day 7 - 16th Jan.
+####################	
+	
+		
+Jenkins Module ::::
+
+		Build Orchestration Tool - Jenkins 
+		
+			CI/CD automation :::
+			
+			Jenkins Architecture :
+			
+			Master/Slave Architecture!
+			
+				Jenkins_Master (VM) - Install Jenkins -- It is used to create Jenkins Jobs/Projects and schedule these jobs to the slave nodes.
+				
+					Jenkins_Slave_Node1	(VM) --> Build Servers - Java Project - jdk, maven 
+					Jenkins_Slave_Node2	(VM) --> Build Servers - Python Project - Python
+					Jenkins_Slave_Node3	(VM) --> Build Servers - .Net - .net core
+					Jenkins_Slave_Node4	(VM) --> Build Servers - Angular Project 
+					Jenkins_Slave_Node5	(VM) --> Build Servers - NodeJS 
+					Jenkins_Slave_Node6	(VM) --> Build Servers - Ruby	
+
+				Distribute the workload / Load Balancing!
+				
+			The Core Features of Jenkins 
+
+		DevOps Role in Jenkins :::
+		
+		Jenkins :
+			
+				Developers' Perspective  
+					Developers are just the consumers. 
+				
+				DevOps Perspective ::
+				
+					Adminstrate overall Jenkins activities
+					Installation of Jenkins 
+					Management of Plugins 
+					User Management 
+					Security Management 
+					Tools Management 
+					System Management 
+					Creation CI/CD pipeline Projects 
+					Onboarding the applications Team to Jenkins to automate the builds and Deployments 
+					Periodic Upgrades 
+					Backup & Recovery.
+				
+			Installation of Jenkins :::
+				https://www.jenkins.io/doc/book/installing/
+				
+				
+				AWS Account ???
+				
+				EC2 Instance :: Virtual Machine in AWS Cloud Platform 
+				
+				Launch Ubuntu 20.04 ami
+				t2.micro
+				
+				Linux Distributions ::
+				
+				Package Manager are used to install and mange the packages in Linux machines 
+				
+				Ubuntu 					apt 
+				centos 					yum 
+				rhel 					yum 	
+				fedora					dnf 
+				
+				
+				1 VM - 750 Hrs / Month 
+				10 VMs - 75 Hrs 
+				
+				
+				How to Connect to the Instance ::::
+				
+					EC2 Instance Connect 
+					
+					SSH Agents - MobaXterm / Putty 	-- Windows 
+					
+						https://mobaxterm.mobatek.net/download.html 
+					
+					Terminals 
+				
+				
