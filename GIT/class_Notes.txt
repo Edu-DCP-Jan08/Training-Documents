@@ -1749,6 +1749,180 @@ Next :::
   701  git status
   702  history
 
+####################
+Day 7 - 16th Jan.
+####################	
+
+		Working with Remote Repositories 
+		
+		Jenkins!
+		
+		Working with Remote Repositories 
+		
+		GitHub ==> Remote Repository - for the source codes/Projects!
+		
+		Developers' workload :
+		
+			New Project 			==> Project Src_Code is developed in Local Machine from scratch
+			
+			Enhancement/Bugfixing  	==> Project Src_Code will be already present in remote repo.
+			
+			github remote repo.
+			
+			gitlab
+			azure repo 
+			aws code commit 
+			bit buckets
+			
+			
+		Pull Request :::
+		
+			- It is a request created by the developers 
+			- It will be submitted to the Approver with proper description about the changes 
+			
+
+			git clone 		--> used to copy/clone the entire repository from remote server into the Local Machine 
+			
+			git add 		--> used to add the changes from working directory to staging area of Local Repository
+			
+			git commit 		--> used to commit the changes from staging area to Local Repository
+			
+			git push 		--> used to push the changes from Local Repository to Remote Repository
+			
+			git pull / fetch :::
+			
+					Both git pull and fetch are used to handle the incremental changes from Remote Repository
+					
+					git fetch :
+					
+							It is just used to check for incremental change, and if there are any increment changes available in the remote the repository, it will update the details in the Local Repository. But NOT in the Working Directory.
+							
+					git pull :
+					
+							It is used to check for incremental change, and if there are any increment changes available in the remote the repository, it will update the details in the Local Repository as well as apply the changes in the Working Directory.							
+							
+					git pull ==> git fetch and merge
+
+
+			git clone :: clone url 
+			
+			git clone <url>
+			
+			git clone https://github.com/Edu-DCP-Jan08/TestRepo1.git
+			
+			git remote -v 
+			
+			git remote add <>
+			
+			git remote remove <>
+			
+			Workflow :
+			
+			clone 
+			
+			create a local branch 
+			
+			make the changes 
+			
+			add the changes to local branch 
+			
+			commit the changes in local branch 
+			
+			
+			git push -u origin localfeature1
+			
+			valid github account_ID 
+			
+			github Access Token 		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
+			
+			How to handle the incremental changes ??
+			
+				git fetch 
+				
+				git pull
+				
+			
+			
+			New Project 			==> Project Src_Code is developed in Local Machine from scratch
+			
+			
+			In Local Machine 
+			
+			git init 
+			
+			In Remote server we create jus a empty repository.
+			
+			git branch -M master			# used to rename the Branch 
+			
+			git branch -D feature1 			# Delete the branch 
+			
+			git remote add origin https://github.com/Edu-DCP-Jan08/TestRep2.git
+
+  501  cd d:
+  502  cd DCP-Jan08/
+  503  ls
+  504  mkdir remoterepos
+  505  cd remoterepos/
+  506  clear
+  507  git clone https://github.com/Edu-DCP-Jan08/TestRepo1.git
+  508  ls
+  509  cd TestRepo1/
+  510  ls
+  511  git status
+  512  git remote -v
+  513  ls
+  514  git branch
+  515  git switch -c localfeature1
+  516  ls
+  517  echo "rec1" >> locals1.txt
+  518  git add .
+  519  git commit -m "local CM1"
+  520  git status
+  521  git log --oneline
+  522  ls
+  523  git push -u origin localfeature1
+  524  clear
+  525  git switch main
+  526  ls
+  527  git status
+  528  git log --oneline
+  529  git fetch
+  530  ls
+  531  git status
+  532  git pull
+  533  ls
+  534  git status
+  535  clear
+  536  git fetch
+  537  ls
+  538  git pull
+  539  ls
+  540  git pull
+  541  clear
+  542  cd ..
+  543  mkdir dummyrepo1
+  544  cd dummyrepo1/
+  545  git init
+  546  echo "rec1" >> f1.txt
+  547  git add .
+  548  git commit -m "local repo"
+  549  git branch -M main
+  550  git branch -M master
+  551  git remote -v
+  552  git remote add origin https://github.com/Edu-DCP-Jan08/TestRep2.git
+  553  git remote -v
+  554  git push -u origin master
+  555  git remote remove origin
+  556  git remote -v
+  557  history
+
+Summary ::
+		Local Repo 
+		
+		Misc git Command 
+		
+		Handle remote Repos. 
+	
 				
 			
 			
