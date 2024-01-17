@@ -83,4 +83,154 @@ Jenkins Module ::::
 					
 					Terminals 
 				
+####################
+Day 8 - 17th Jan.
+####################
+
+			Installation of Jenkins & Configuration :::
+				https://www.jenkins.io/doc/book/installing/		
+
+
+			Linux Boxes ::
+			
+			1. Install the Pre-Requisites 
+			2. Install the actual tool 
+			3. Post Installation Actions
+
+# Install JDK :
+
+sudo -i			
+sudo apt update -y
+sudo apt install openjdk-17-jre -y
+java -version				
+				
+# Install Jenkins :
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update -y
+sudo apt-get install jenkins -y
+		
+To Access Jenkins using Web Browser :
+
+<public_ip_Addr>:8080
+
+/var/lib/jenkins
+
+https://updates.jenkins.io/download/plugins/docker-plugin/1.4/docker-plugin.hpi
+
+
+				DevOps Perspective ::
+				
+					Adminstrate overall Jenkins activities
+					Installation of Jenkins 
+					Management of Plugins 
+					User Management 
+					Security Management 
+					Tools Management 
+					System Management 
+					Trouble Shooting the Issues
+					Creation of Free-Style and CI/CD pipeline Projects 
+					Configure the Jenkins Slave Nodes
+					Onboarding the applications Team to Jenkins to automate the builds and Deployments 
+					Periodic Upgrades 
+					Backup & Recovery.
+					
+					
+	JEnkins Projects/Jobs ::
+
+		-- Free Style Project 
+				Configured manually
+		
+		Variables ::::
+		
+			Environment Variables
+			
+				echo "jenkins-${JOB_NAME}-${BUILD_NUMBER}"
+			
+			User-Defined Variables 
+			
+			
+			
+		-- Pipeline Projects 
+				- Configurations are done thru scripts - groovy
+				
+			- Scripted Pipeline : Use typical Groovy scripting
+					
+			
+			- Declarative Pipeline :
+			
+					Pipeline is composed of various stages :::
+					
+				Build and Deployment of a java project :::
+				
+					Using DevOps Approach :::
+					
+					
+						Coding --> *.java		-- save the source code in a source code repository like GIT
+						
+							IDEs - Eclipse based IDEs - Visual Studio Code / Visual Studio / Pycharm / Intellij
+						
+					Using DevOps Automate :
+						Automated Build --> Compile the code and create artifacts(Binaries - *.war/*.jar)
+						Automated Unit Testing 
+						Automate - promote the changes for further testing 
+						Automate - Notify the testing team 	
+
+				Pipeline Project :
+				
+				Stage1 : Checkout the src_code from github
+				Stage2 : Maven Build
+				Stage3 : Unit Testing 
+				Stage4 : Promote the Code to QA 
+				Stage5 : Email Notify the Users
+				
+				
+			
+			
+	Jenkins 
+	
+	Azure pipeline		*.yaml --> key & Values - key:value pairs - Declarative Language
+	gitlab-ci 
+	aws code commit 
+	bamboo
+
+				Pipeline Project :
+				
+				Stage1 : Checkout the src_code from github
+				Stage2 : Maven Build
+				Stage3 : Unit Testing 
+				Stage4 : Promote the Code to QA 
+				Stage5 : Email Notify the Users
+				
+Declarative Pipeline :
+	
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+				
+            }
+        }
+        stage('Java Maven Build') {
+            steps {
+                echo 'Java App build'
+				
+            }
+        }
+        stage('Deploy to QA Environment') {
+            steps {
+                echo 'Deploy the Artifacts to QA Server'
+				
+            }
+        }
+    }
+}
+
 				
