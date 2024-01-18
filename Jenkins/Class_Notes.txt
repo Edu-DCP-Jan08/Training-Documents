@@ -233,4 +233,160 @@ pipeline {
     }
 }
 
+
+##################
+Day 9 - 18th Jan.
+##################
+
+	CICD Pipeline :::
+	
+		Confiugure Jenkins_Slave Node!
+		
+		VM - Java Web Application - Builds 
+			Java -> ANT/GRADLE/Maven 
+			
+			
+			Maven Build Tool ::	
+			
+				Build --> Compile 
+				Create Artifacts --> Binaries (*.war/*.jar)
+				Unit Testing - JUNIT 
 				
+				Dependencies :
+					It used automatically Install all the dependencies and plugins required for Builds 
+					
+				pom.xml ==> 
+				Maven Goals ==> 
+					Compile 
+					Test 	-> code compilation & Testing
+					Package -> compile, create artifacts & unit test
+						target/
+							*.war								
+					clean   -> Used to clean-up the existing target folder before creating new artifacts 
+					
+
+			1. Create a Build Server / Jenkins_slave_Node 
+			2. Install all the required Build Tools 
+				jdk,maven,git
+			
+			Jenkins_Master(VM) 			==> Installed - jdk, jenkins 
+				Jenkins_Slave_Node(VM) 	==> jdk,maven,git
+
+				HOST_Name 
+				User_Name & Credentials 
+				SSH Connection --> 22
+				
+			3. Create valid user in the slave Node 
+			4. Create the Credentials for Authentication
+				Authentication ::
+					- Password based Authentication
+					- Token based Authentication
+					- Key based Authentication
+					- Passwordless Authentication
+				ssh-keygen 
+			5. Configure the slave node to Jenkins_Master 
+					Goto Jenkins Dashboard - Manage Jenkins - Add Nodes 
+			
+
+#Configure Slave Node1 for Java Maven App. :
+
+sudo -i
+
+apt update -y 
+
+Install Java ::
+
+sudo apt update -y 
+sudo apt install openjdk-11-jre -y
+java -version
+
+Install GIT :
+
+git --version 
+
+sudo apt install git -y
+
+Install Maven - Build Tool :
+https://maven.apache.org/install.html
+
+sudo apt install maven -y 
+
+
+Create User in Jenkins Slave Machine & Create SSH Keys 
+
+	SSH Keys --> is composed of public and private keys 
+
+
+#Add User : 
+
+#useradd devopsadmin 
+
+useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+
+su - devopsadmin
+
+#ssh-keygen
+
+#for Ubuntu ::
+ssh-keygen -t rsa -b 2048 -m PEM
+
+
+ls ~/.ssh 
+
+#You should see following two files:
+
+#id_rsa - private key
+#id_rsa.pub - public
+
+
+cat id_rsa.pub > authorized_keys
+
+chown -R devopsadmin /home/devopsadmin/.ssh
+chmod 600 /home/devopsadmin/.ssh/authorized_keys
+chmod 700 /home/devopsadmin/.ssh
+
+
+			Environments:::
+			
+				Non-Prod Environment										====>					Production Environment
+				
+					Dev Environment 
+					Build Environment 
+					Test Environment
+						QA - Quality Assurance 
+						UAT - User Acceptance Testing						===>						Prod Environment
+					
+	
+	
+pipeline {
+     agent { label 'slave1' }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+				git 'https://github.com/LoksaiETA/Java-mvn-app2.git'
+				
+            }
+        }
+        stage('Java Maven Build') {
+            steps {
+                echo 'Java App build'
+				sh "mvn clean package"
+				
+            }
+        }
+        stage('Deploy to QA Environment') {
+            steps {
+                echo 'Deploy the Artifacts to QA Server'
+				
+            }
+        }
+    }
+}
+
+Next :::
+
+	Tomcat Server Config and Deployments!
+
+	Tomcat Web Application Server --> 				
