@@ -390,3 +390,258 @@ Next :::
 	Tomcat Server Config and Deployments!
 
 	Tomcat Web Application Server --> 				
+
+##################
+Day 10 - 19th Jan.
+##################
+
+	Tomcat Server Config and Deployments!
+
+	Tomcat Web Application Server -->
+	
+	Build Triggers -- Build Automation 
+	
+	EMail Notifications 
+	
+	- Ansible!
+	
+	
+	CI/CD Pipeline 
+	
+	Tomcat/Nginx - Web Application Server 
+	
+	Deployment ::: It is a processing of copying the artifacts from one Environment to another.
+	
+	Launch a VM - Ubuntu for Tomcat server and add port 8080.
+	
+	jdk,tomcat 
+
+		Jenkins_Master 
+			Jenkins_Slave 
+		Tomcat_Server
+		
+		<public_ip_address>:8080
+		52.66.248.170:8080
+		
+	Deployment ::: It is a processing of copying the artifacts from one Environment to another.
+	
+	Source_Environment/Machine 									====>	Target_Environment/Machine 
+	
+		Jenkins_Slave_Node 														Tomcat_Server
+			target/mvn-hello.war															/opt/tomcat/webapps/mvn-hello.war
+	
+	devopsadmin - user
+	
+		
+
+######################Install TOMCAT Application Server on Ubuntu :::
+
+sudo -i
+
+sudo apt update -y 
+
+
+sudo apt install openjdk-11-jre -y 
+java -version
+
+#edit /etc/profile & add JAVA_HOME
+
+#/usr/lib/jvm/java-11-openjdk-amd64/
+
+vi /etc/profile
+
+java-11-openjdk-amd64
+
+
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+
+source /etc/profile
+
+Install Tomcat ::  https://tomcat.apache.org/download-80.cgi
+
+https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.98/bin/apache-tomcat-8.5.98.tar.gz
+
+cd /opt
+wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.98/bin/apache-tomcat-8.5.98.tar.gz
+tar -xvzf /opt/apache-tomcat-8.5.98.tar.gz
+
+mv apache-tomcat-8.5.98 tomcat
+
+#Start Tomcat Server:
+#Goto:
+
+cd /opt/tomcat/bin
+./startup.sh
+
+###########################################
+
+#Add User : 
+
+useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+
+su - devopsadmin
+
+#ssh-keygen
+
+#for Ubuntu ::
+ssh-keygen -t rsa -b 2048 -m PEM
+
+
+ls ~/.ssh 
+
+#You should see following two files:
+
+#id_rsa - private key
+#id_rsa.pub - public
+
+
+cat id_rsa.pub > authorized_keys
+
+chown -R devopsadmin /home/devopsadmin/.ssh
+chmod 600 /home/devopsadmin/.ssh/authorized_keys
+chmod 700 /home/devopsadmin/.ssh
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#make devopsadmin user as a owner to tomcat dir :
+
+chown -R devopsadmin /opt/tomcat
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Using Publish over SSH Plugin 
+	- we can connect to any remote server and copy the files/artifacts
+	
+	
+pipeline {
+     agent { label 'slave1' }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+				git 'https://github.com/LoksaiETA/Java-mvn-app2.git'
+				
+            }
+        }
+        stage('Java Maven Build') {
+            steps {
+                echo 'Java App build'
+				sh "mvn clean package"
+				
+            }
+        }
+        stage('Deploy to QA Environment') {
+            steps {
+				script {
+					sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat-Server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/mvn-hello-world.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+				}				
+            }
+        }
+    }
+}
+
+
+sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat-Server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/mvn-hello-world.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
+
+Build Triggers ::
+
+	Build Periodic :::
+	
+			Used to start the jenkins Jobs based on the schedule.
+	
+			Start_Jenkins_Job :;		Build Periodic - 8AM Daily Basis
+			
+				script - start the server 
+
+			Stop_Jenkins_Job :;		Build Periodic - 10PM Daily Basis
+			
+				script - stop the server 
+
+	
+	Github Webhook 
+	
+			Used to trigger the Jenkins Jobs, as soon as the changes are pushed into the source code repository.
+			
+			Configure webhook and payload url in the repository setting
+			
+			
+	
+	Poll SCM 
+			Uses the crontab and github repos events
+			Used to trigger the jenkins Jobs based on the schedule, only if there is any changes happened in the src_code repo..
+			
+		
+		Test Cycle :::
+		
+		8AM 	12PM	3PM			Daily 
+		
+			
+	
+	
+	
+	Non-Prod Servers(Business Hours) 					Prod Servers
+	
+	DEV 
+	BUILD 
+	QA 
+	UAT 													PROD???
+	
+http://35.154.138.9:8080/github-webhook/
+
+
+Notifications ::
+
+Email Notifications :::
+
+	Can be defined as a post build event.
+	
+	Build Status :::
+	
+		Success 
+		failure 
+		unstable
+
+To Setup the Email Configs.: 	
+
+Email Notification Plugins :::
+
+SMTP Server :
+smtp.gmail.com
+
+SMTP Authentication
+	User Name : <email_id>
+	Password  : <App Token>  kozb lqqo visz sxkb
+
+SMTP Port :: 465
+
+Reply-To Address : <email_id>
+
+Login to Gmail :::
+
+Click Account Settings
+
+select Security tab
+
+Two-Way Authentication -> MFA --> mobile#
+
+Create App Password = 16Bytes of token -  kozblqqoviszsxkb
+
+What ? window
+Which Appln - email		
+
+Jenkins :::
+	
+		Install, archi, Management of Jenkins 
+		pipeline 
+		Node Configs
+		Remote server 
+		CICD pipeline 
+
+NEXT :::		
+		
+Ansible :::
+
+	IAC Tool -- CMS
