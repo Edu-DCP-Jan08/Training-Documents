@@ -1,0 +1,85 @@
+	
+##################
+Day 11 - 22nd Jan.
+##################
+
+		IAC Tool 
+		
+		IAC - Infra-Structure As Code !!!
+		
+		Traditional way of Infra-Structure Management 
+		
+		Linux/Window --> 
+		
+		Shell Scripts 
+		CLI 
+		APIs 
+		
+		
+		IAC --> Tool --> Declarative Languages - *.yaml/*.json/HCL
+		
+		Provisioning/Creating the Servers		==> Terraform 
+		
+		Configuration of Servers 				==> Configuration Management Tool - Ansible 
+			- Install/Unsstall/Upgrade 
+		
+		Jenkins_Master 
+			Jenkins_Slave1,....,10
+			
+		
+		Ansible Architecture :::
+			Ansible Controller & Ansible Clients
+			It uses the Push Mechanism.
+				Module/function will be pushed into the target server 
+			It is Agentless.
+			
+			All the Nodes should have python installed.
+			
+		Components of Ansible Architecture :::
+		
+			- Ansible Controller 
+			- Ansible Target Nodes 
+			- Inventory 			# used to maintain the Details of the target Nodes 
+			- Modules 				# Is the actual Script we execute in the target nodes.
+			- ansible config file	# Used to maintain the default properties of Ansible.
+		
+		Terminologies :
+			- Push Mechanism 
+			- Inventory 			# used to maintain the Details of the target Nodes 
+			- Modules 				# Is the actual Script we execute in the target nodes.			
+		
+		Working with Ansible :
+		
+			- Ansible Adhoc Commands 	# Used to run a task/Module on adhoc basis
+			
+			- Ansible Playbook			# Script written using *.yaml 
+										Defines the Tasks/Modules to be executed in target Nodes
+										
+			- Using Jenkins, the playbooks can scheduled to run in the target. 
+									  
+			- Ansible Roles 			# Are used to Organize the Ansible Components 
+										# Reuse/Share.
+										# Github Repositories are used to maintain/Organize the Ansible Components 
+										
+										
+		Installation & Configuration of Ansible Controller & Target Nodes :::
+		
+		Create Inventory File 
+		
+		Excute Ansible Adhoc Commands 
+		
+		Create & Execute Ansible Playbooks 
+		
+		Organize the Ansible Playbook Components.
+		
+		Installation & Configuration of Ansible Controller & Target Nodes :::
+
+			Launch 3 VMs - Ubuntu
+			
+Summary ::
+
+		Ansible Architecture 
+		Install & Config Ansible Controller & Worker Nodes 
+		Create Inventory File 
+		Adhoc Command 
+		
