@@ -83,3 +83,55 @@ Summary ::
 		Create Inventory File 
 		Adhoc Command 
 		
+
+##################
+Day 12 - 23rd Jan.
+##################
+
+
+		Ansible Modules 
+		Adhoc Commands 
+		Playbooks 
+		Roles
+		
+		Create the inventory file..
+		
+		Write Playbook :
+		
+		Handling Variables :::
+		
+		Register & Set Facts :::
+		
+		Handlers ::::
+		
+		https://docs.ansible.com/ansible/2.9/index.html
+		
+		
+#~~~~~~~~~~~~~~~~~~~~~~~~~
+Ansible Roles :::
+
+
+		Ansible Roles are used to organize the Ansible Components
+		To reuse & Share.
+
+		Ansible Repository ::
+
+		Understand the structure of Ansible Components ::::
+
+			playbooks, handlers, variable, defaults, tasks,	
+		
+		
+		
+		
+		Source Code Repository		- github tag v1.0
+		
+		Artifactory Library 		- jfrog Artifactory - tag v1.0
+		
+		container Registry 			- dockerhub - tag v1.0 the application images 
+		
+		
+		jdk1.8 
+		jdk1.9
+		
+		
+		
