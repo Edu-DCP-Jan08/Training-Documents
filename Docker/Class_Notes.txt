@@ -1,0 +1,258 @@
+##################
+Day 13 - 24th Jan.
+##################
+			
+		Containerization using Docker 
+		Kubernetes 
+		
+		Containerization using Docker ::
+		
+		Terminologies :
+		
+		Install Docker 
+		
+		Work with Docker CLI Command 
+		
+		Build Docker Images 
+			
+		Docker Volumes 
+		
+		Overview of Docker Compose / Docker Swarm 
+		
+		Kubernetes
+		
+		
+		Terminologies :
+		
+			Virtual Machines ::: ???
+			
+				- It called as Hardware Level Virtualization
+				- It is created using Hypervisor
+				- VMs are used to run the Operating System
+				- VMs Consume more space and time to start-up.
+				- VMs Consume the resources even if there is not Appln. is running.
+			
+			Containers ::: ?
+			
+				- It is called as OS Level Virtualization
+				- It is created using Container Engine 
+				- Containers are used to run the Applications NOT Operating System.
+				- If we run any container without and task/application, that container will immediately go to EXIT State.
+				- Control Group / Namespace - Using these core properties of Kernel, Container are execute in an isolated environment.
+				- It consume very less space and time to start-up the application
+				- Container Process will be faster compared to VMs.
+				
+				- Containers are used to reduce the no. of VMs
+				
+		Containers :::
+		
+		Infra-Structure Perspective :::
+		
+				Jenkins_Master(VM)			==> 	Create Jenkins Project and scheduling
+					Jenkins_Slave1(VM)		==> 	Build Java 
+					Jenkins_Slave2(VM)		==> 	Python
+					Jenkins_Slave3(VM)		==> 	Angular/NodeJS
+					
+					
+				Containerization Process ::
+				
+				Jenkins_Master(VM)					==> 	Create Jenkins Project and scheduling
+					Jenkins_Build_Server(VM)				
+						Container_Engine 
+							Container1		==> Java Builds 
+							Container2		==> Python 
+							Container3		==> NodeJS 
+		
+		Deployment Perspective :::
+		
+			1. Coding - java web appln.
+			2. Build - Compile and create artifacts - mywebapp.war_v1.0 / v1.1,......
+			2.1. Perform Unit Testing 	--> Run & Test the artifacts in DEV Environment
+											OpenJDK_11 / Tomcat8.5
+			3. Deployed the artifacts to QA Server
+			
+					QA ==> mywebapp.war_v1.0 --> Oracle_jdk17,tomcat_9 	# Will get the compatibility Issue
+
+					UAT ==> mywebapp.war_v1.0 --> jdk,tomcat
+
+					PROD ==> mywebapp.war_v1.0 --> jdk,tomcat					
+			
+			Containerization Process ::		
+
+			1. Coding - java web appln.
+			2. Build - Compile and create artifacts - mywebapp.war_v1.0
+			2.1. Perform Unit Testing 	--> Run & Test the artifacts in DEV Environment
+											OpenJDK_11 / Tomcat8.5				
+											
+				Package the Application Artifacts along with the dependencies & Promote that Package to Target Environment.
+				
+					mywebapp.war_v1.0 ===> mywebapp_pkg_v1.0(mywebapp.war_v1.0,OpenJDK_11,Tomcat8.5)  ==>  mywebapp_pkg_v1.0
+				
+				The Package ==> Application Image
+
+						These Application Images are deployed in the target environment and executed as containers.
+					
+			3. Deployed the artifacts to QA Server
+			
+					QA ==> mywebapp_pkg_v1.0
+
+					UAT ==> mywebapp_pkg_v1.0
+					
+					PROD ==> mywebapp_pkg_v1.0		
+
+
+			Terminologies ::
+			
+				- Image					# It is a static file that defines the properties of the container.
+										# It is composed of Application Artifact and the dependencies in the form of Layer.
+										# These layers are defined using the Dockfile Instructions
+										# Images are non-executable
+									
+				
+				- Container 			# Containers are the executable units of Images
+
+				- Container Registry	# Is used to store and Manage the Container Images.
+											DockerHub --> Enterprise Level
+												DEV1,2,3,4,5
+											
+				- Repository			# Sub-set of Container Registry 
+				
+				
+			Installation of Container Engine 
+					https://docs.docker.com/engine/install/
+					
+						sudo apt install docker.io -y
+						
+			Container Rgistry ==> Create Account in Dockerhub	- https://hub.docker.com/
+			
+			Docker CLI Commands 
+			
+			docker images 		# Used to get the list of Images in the Local Machine 
+			
+			
+			docker pull <image_name>	# Used to just download an Image from Dockerhub registry to Local Machine .
+			
+			docker ps 			# Used to get the list of running containers 
+			
+			docker ps -a 		# Used to get the list all containers - ( running / exit state )
+			
+			
+			docker run <image_name>			# Used to create and run the container using the container image.
+				
+				
+				3 Modes of Container Execution :::
+				
+					- Foreground / Attached Mode 		# Default Mode
+							Eg.:  
+							 docker run centos
+							 docker run centos sleep 20
+							 docker run centos echo "Hello"							 
+					
+					- Background / Detached Mode 
+							Eg.: 
+								docker run -d centos sleep 20
+								docker run -d centos echo "Hello"								
+								
+					- Interactive Mode
+							Eg.: 
+								docker run -it centos bash 
+								
+								
+			docker rmi		# Used to remove the Container image from local  
+					Eg.: 
+						docker rmi <image_name>
+						
+						docker rmi -f <image_name>		# Force Removal 
+				
+			docker rm 		# Used to remove the Container from local 
+			
+					Eg.: docker rm <container_id> 
+					
+			docker start <container_id> 
+			
+			docker stop <Container_id>
+			
+			docker kill <Container_id>
+								
+			docker exec 			# It is used to login to a running container.
+				Eg.: 
+					docker exec -it <container_id> bash 
+				
+			Difference between 
+
+				docker run 								# Used to create and run the container using the container image.
+						docker run -it centos bash 
+				docker exec 
+						docker exec -it <container_id> bash 			# It is used to login to a running container.
+
+   29  sudo apt install docker.io -y
+   30  docker --version
+   31  c
+   32  ear
+   33  clear
+   34  docker --version
+   35  docker images
+   36  docker ps
+   37  docker ps -a
+   38  docker images
+   39  docker pull centos
+   40  docker images
+   41  docker ps -a
+   42  docker run centos
+   43  docker ps
+   44  docker ps -a
+   45  clear
+   46  docker images
+   47  docker run centos sleep 20
+   48  adf
+   49  asdf
+   50  as
+   51  df
+   52  asdf
+   53  clear
+   54  docker run centos sleep 20
+   55  docker run -d centos sleep 20
+   56  docker ps
+   57  clear
+   58  docker images
+   59  docker ps -a
+   60  docker ps
+   61  docker run -d --name=dummy centos sleep 20
+   62  docker ps
+   63  clear
+   64  docker run centos sleep 20
+   65  docker run -d centos sleep 20
+   66  clear
+   67  docker images
+   68  docker run -it centos
+   69  clear
+   70  docker images
+   71  docker run ubuntu
+   72  docker images
+   73  docker ps -a
+   74  clear
+   75  docker ps -a
+   76  docker rm f3dd4a68f109 a043898 927f2163da99
+   77  docker ps -a
+   78  docker images
+   79  docker rmi ubuntu
+   80  docker rm 6b2c859df3f8
+   81  docker rmi ubuntu
+   82  docker images
+   83  clear
+   84  docker ps -a
+   85  docker start 311b224a0365
+   86  docker ps -a
+   87  docker start 311b224a0365
+   88  docker stop 311b224a0365
+   89  clear
+   90  docker images
+   91  docker run centos sleep 60
+   92  history
+
+   28  docker ps
+   29  clear
+   30  docker ps
+   31  docker exec -it 1a1084a566b9 bash
+   32  docker ps -a
+   33  history
