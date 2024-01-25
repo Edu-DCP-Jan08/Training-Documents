@@ -256,3 +256,217 @@ Day 13 - 24th Jan.
    31  docker exec -it 1a1084a566b9 bash
    32  docker ps -a
    33  history
+
+
+##################
+Day 14 - 25th Jan.
+##################
+			
+			Port Mapping 
+			Docker Volumes 
+			Create Docker Images 
+			Login to Dockerhub using docker cli 
+			push the images to dockerhub 
+			overview of Docker Compose and Docker Swarm 
+			
+			Kubernetes
+				
+				
+			Execute a web application inside container 
+			
+			Port Mapping - Is used to map/bind the ports between container and the host port
+							Expose the container to internet
+			
+						
+			<public_ip_Addr>:8080		
+			
+			docker run -it -p 8085:8080 tomcat:8.0
+			
+				-p <host_port>:<container_port> 
+			
+			13.201.188.212:8085 => 
+			
+			
+			Volumes :::
+			
+				C1 -> need some input / creates some output :::
+				
+			Docker Volumes ::::
+			
+				Application Architecture :::
+				
+				Stateless Application
+					- Application which never leave any trace of execution
+					- This doesnt req. any volume to store the data.
+					
+				
+				Stateful Application
+					- Applications that leave the trace of execution in the form of logs/reports/status
+					- This req. Volumes to store the data 
+					
+			Persistant Volume --> Is used maintain the container data even after the lifetime of container.
+			
+			Create Docker Container Image :::
+			
+			
+				- docker commit	  # container_id is the input 
+						USed to create container image using existing container reference.
+						
+							docker run -it debian bash :::
+							install git/jdk/maven 
+							exit 
+							
+							
+							
+							docker commit 2e1d6cbbcb5e loksaieta/jan08gitimg:v1.0
+				
+				- docker build 	  # Dockerfile is the input 			# Recommended in packaing the application images.
+						USed to create container image without any container reference.
+
+					Dockerfile 
+					
+						docker build -t loksaieta/jan08mygitimg .
+						
+				Write Docker File :::
+				
+					Is composed of Instructions ::
+					FROM 	# refer the base image 
+					RUN 	# run the package manager in the container 
+					COPY 	# copy the file from host volume to container volume 
+					CP 		# copy the file within the container volumes 
+					WORKDIR	# refer the present working directory 
+					ENV 	# to define environment variable within the container
+					EXPOSE  # to expose container port
+					CMD 	# to run startup command/task, this can used to pass runtime inputs  
+					ENTRYPOINT # to run the startup command/task, but this cannot be modified at runtime 
+					
+				Docker Push :::
+				
+				- connect to dockerhub using docker cli.
+				
+				- access token 
+					- Create access token in dockerhub 		
+					- login 								docker login -u loksaieta
+					- push the images 						docker push <image_name>:<tag>
+					
+					
+					
+				Deploy the images in target environment using kubernetes 	
+				
+				Docker Compose :::			
+				
+					- Used to run multiple Containers as a single service.
+					- Docker-Compose file using *.yaml - Manifest file - defines the service to run containers.
+					
+				Eg.: 
+				
+					User_Registration Service ::: 3-tier
+					
+						- Front_End					C1 - 3 replicas of C1 
+						
+						- Application_Layer			C2 - 3 replicas of C2 
+						
+						- Back_End(Dbase)			C3 - 3 replicas of C3
+					
+
+				Container Orchestration Tool ::::
+				
+					Used to Orchestrate the Container to ensure high availability 
+					
+					Docker Swarm  is the Container Orchestration tool only for Docker Container.
+						- Used to ensure high availability of the container
+						- Create Replicas of Container 
+								
+							
+						
+					Kubernetes 	is the Container Orchestration tool for any type of Container.
+						- Used to ensure high availability of the container
+						- Create Replicas of Container
+						- Perform Autoscaling 
+						- Load Balancing 
+						
+						
+			Micro-Service based Application Deployments 
+			
+				Docker 			Create and push the images to Container Registry 
+				
+				Kubernetes 		Deploy the Containers in target environment, by creating replicas, autoscaling, loadbalancing
+
+  100  clear
+  101  docker ps
+  102  docker ps -a
+  103  docker run -it -p 8085:8080 tomcat:8.0
+  104  history
+
+
+  100  clear
+  101  docker ps
+  102  docker stop d9b9f4828b5a 9170463b5ca5 f8c7f1620764
+  103  clear
+  104  docker run -it centos bash
+  105  docker volume list
+  106  docker volume create jan08vol1
+  107  docker volume list
+  108  docker volume inspect jan08vol1
+  109  cd /var/lib/docker/volumes/
+  110  clear
+  111  ls
+  112  cd jan08vol1/
+  113  ls
+  114  cd _data/
+  115  pwd
+  116  ls
+  117  docker volume inspect jan08vol1
+  118  docker run -it centos bash
+  119  docker run -it --mount source=jan08vol1 destination=/jan08vol1 centos bash
+  120  docker run -it --mount source=jan08vol1,destination=/jan08vol1 centos bash
+  121  pwd
+  122  ls
+  123  docker ps
+  124  docker ps -a
+  125  ls
+  126  cat fromcontainer.txt
+  127  echo "rec1" >> hostfile1.txt
+  128  ls
+  129  docker run -it --mount source=jan08vol1,destination=/jan08vol1 centos bash
+  130  clear
+  131  cd ~
+  132  docker run -it debain bash
+  133  docker run -it debain
+  134  clear
+  135  docker run -it debian
+  136  docker ps -a
+  137  docker start 2e1d6cbbcb5e
+  138  docker exec -it 2e1d6cbbcb5e bash
+  139  docker images
+  140  docker commit 2e1d6cbbcb5e loksaieta/jan08gitimg:v1.0
+  141  docker images
+  142  docker run -it loksaieta/jan08gitimg:v1.0 bash
+  143  clear
+  144  mkdir docker_contents
+  145  cd docker_contents/
+  146  vi Dockerfile
+  147  cat Dockerfile
+  148  docker images
+  149  docker build -t loksaieta/jan08mygitimg .
+  150  docker images
+  151  cat Dockerfile
+  152  ls
+  153  docker images
+  154  docker history tomcat
+  155  docker history tomcat:8.0
+  156  docker history tomcat
+  157  docker images
+  158  docker history loksaieta/jan08mygitimg:latest
+  159  clear
+  160  docker ps -a
+  161  docker history centos
+  162  docker images
+  163  docker login -u loksaieta
+  164  docker push loksaieta/jan08mygitimg
+  165  docker push loksaieta/jan08gitimg:v1.0
+  166  docker imag
+  167  clear
+  168  history
+
+Kubernetes ::::
