@@ -1,0 +1,164 @@
+##################
+Day 15 - 29th Jan.
+##################
+
+Kubernetes ::::
+
+		Kubernetes :::
+		
+			-- Container Orchestration Tool			
+			
+			- Kubernetes Architecture
+			
+			- Kubernetes Components
+			
+			- Terminologies 
+			
+			- Core Kubernetes Concepts 
+			
+			
+			Docker -- Container Engine 
+			
+				Used to Create Container Images, publish the Images to Contianer Registry and Run the Contianer 
+
+
+				Image 
+				
+				Container / pod 
+				
+				
+			- Kubernetes Architecture
+
+					- Open Source Container Orchestration Tool
+					- It is of Client - Server Architecture 
+					
+						Kubernetes_Master 			# Used to Create and Scehedule the Deployments 
+						
+							Kubernetes_Worknode1	# Used to actually run the Application pods
+							Kubernetes_Worknode2
+							Kubernetes_Worknode3
+					
+					Kubernetes 	is the Container Orchestration tool for any type of Container.
+						- Used to ensure high availability of the container
+						- Create Replicas of Container
+						- Perform Autoscaling 
+						- Load Balancing
+
+
+			- Kubernetes Components
+
+				- API Server 
+				- ETCD 
+				- SCHEDULER 
+				- CONTROLLER MANAGER 
+				
+				- KUBELET 
+				- KUBEPROXY 
+				- CRI - CONTAINER RUN-TIME INTERFACE - ContainerD  
+
+			- Terminologies 
+
+				Images 		- 
+				
+				Container 	-
+
+				Container Registry 
+				
+				Pods 						==> It is an atomic unit of Scehedule
+												Containers are wrapped into a pod for deployment
+				
+				Kubernetes_Master 
+				
+				Kubernetes_Worknodes 
+				
+				Kubernetes Cluster 			==> It is Collection of Kubernetes_Worknodes
+
+
+				Kubernetes_Master 		               
+					Kubetnetes_Cluster 
+						Kubernetes_Worknode1
+						Kubernetes_Worknode2		
+						Kubernetes_Worknode3		
+						
+					Kubernetes_Master 		               
+						Kubernetes_Worknode1
+						Kubernetes_Worknode2		
+						Kubernetes_Worknode3					
+
+				Kubernetes_Master			# Kubernetes Master of Masters
+					Kubernetes_Master1 		               
+						Kubetnetes_Cluster1 
+							Kubernetes_Worknode1
+							Kubernetes_Worknode2		
+							Kubernetes_Worknode3		
+						Kubetnetes_Cluster2 
+							Kubernetes_Worknode1
+							Kubernetes_Worknode2		
+							Kubernetes_Worknode3		
+					Kubernetes_Master2		               
+						Kubetnetes_Cluster1 
+							Kubernetes_Worknode1
+							Kubernetes_Worknode2		
+							Kubernetes_Worknode3		
+						Kubetnetes_Cluster2 
+							Kubernetes_Worknode1
+							Kubernetes_Worknode2		
+							Kubernetes_Worknode3		
+						
+			- Core Kubernetes Concepts 
+			
+				- Pod 
+					- Namespace
+				
+				- Controller Objects 
+					Replication Controller 
+					Replicaset
+					Deployments 
+					Daemonset
+					
+				Kubernetes Services 
+					ClusterIP Service 
+					NodePort Service 
+					Load Balancer Service 
+					
+				Kubernetes Volumes 		
+					EmptyDir Volume
+					Hostpath Volume 
+					ConfigMap Volume 
+					Secret 
+					Persistant Volume 
+					Persistant Volume Claim
+					
+				HELM Charts = Package Manager for Kubernetes
+					
+					
+			- Installation of Kubernetes Master & WorkNodes 
+
+					Kubernetes_Master (VM)
+						Kubernetes_Worknode1 (VM)
+						Kubernetes_Worknode2 (VM) 
+						
+				Kubeadm 
+				Minikube 
+
+			Kubernetes ::
+				Open-Source Kubernetes
+				
+					Setting up of Kubernetes Master/Cluster - Manual Process 
+					Complex Setup
+						
+			Managed Services ::
+
+				- AWS 	--> ECS,ECR,EKS
+				- Azure --> ACS,ACR,AKS
+				- GCP   --> GCS,GCR,GKS
+					
+					
+			KubeProxy -- used enable pod networking 
+			
+			By assigning pod IP Address 
+			
+			Using Network Plugins 
+			
+				Flannel 
+				Calico 
