@@ -162,3 +162,83 @@ Kubernetes ::::
 			
 				Flannel 
 				Calico 
+
+##################
+Day 16 - 30th Jan.
+##################					
+					
+		Working with Kubernetes
+					
+		Pod Definition ::::
+		
+		Namespace :	Logical grouping of pods in the cluster.
+		
+		
+		Kubernetes Controller Objects :::
+			- Used to ensure high availability of pods.
+			- It create Replicas 
+			
+			- Replication Controller 
+					- create replicas of pod 
+					- it used equality based operator 
+					- scale-up
+					- scale-down 
+					
+			- Replicasets
+					- create replicas of pod 
+					- it used set based operator 
+					- scale-up
+					- scale-down 
+					- It is used in Deployment objects
+			
+			pod1
+			label - envi:dev 
+			pod2
+			label - envi:dev
+			
+			pod3 
+			label - envi:{dev,qa,qat}
+			
+			- Deployment Controller Object :::
+					- create replicas of pod 
+					- It used set based operator 
+					- scale-up
+					- scale-down 
+					- It automatically create Replicasets	
+					- Upgrade the pod 			app:v1.0	==> v1.1
+					- downgrade the pods - rollback/undo 
+					- Without any downtime, we can perform upgrade/rollback.
+					
+				Deployment Strategy :::
+				
+					Rolling Update Strategy 
+					
+					p1	n:1.7.9		= n:1.9.1
+					p2
+					p3 
+			
+			
+			
+			- Daemonset ::: 
+			
+			
+				Replicasets 	=> It is used to run a specific number of pods
+				
+				Daemonset 		=> Used to Deploy a copy of pod in all the nodes
+				
+				
+				5 Worknodes 
+				
+				Application - Pod 
+				
+				Monitoring tool 
+				Logging tools 
+				
+				5 nodes -- 
+				
+				+5 
+					
+				Kubernetes Services 
+					ClusterIP Service 		# Used for internal communication between the pods. ***Default service in K8s
+					NodePort Service 		# Used to Expose the Pods to Internet.
+					Load Balancer Service 	# .....				
