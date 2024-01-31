@@ -242,3 +242,101 @@ Day 16 - 30th Jan.
 					ClusterIP Service 		# Used for internal communication between the pods. ***Default service in K8s
 					NodePort Service 		# Used to Expose the Pods to Internet.
 					Load Balancer Service 	# .....				
+
+##################
+Day 17 - 31st Jan.
+##################					
+						
+		Kubernetes Services 
+			ClusterIP Service 		# Used for internal communication between the pods. ***Default service in K8s
+			NodePort Service 		# Used to Expose the Pods to Internet.
+			Load Balancer Service 	# It is created at the application level. To route the request to the services.				
+				
+		Kubernetes Volumes :::
+		
+			Volumes 
+			Any Stateful Application We use Volumes
+			
+			1TBs of Volumes 
+			
+			
+			emptyDir 		# Default 
+			
+			hostpath 		# at the host level. 
+			
+			ConfigMaps 		# config/properties 
+			
+			Secrets			# Used to maintain the sensitive data
+			
+			
+			Persistant Volume 
+				
+				Static Provisioning	
+				
+				Dynamic Provisioning 
+			
+			Persistant Volume Claim
+			
+		
+			
+		
+		Overview of Kubernetes Package Manager HELM.
+		
+			HELM - Package Manager for Kubernetes :::
+			
+				Kubernetes Dashboard 
+			
+			cluster 
+				apt 	ubuntu
+				yum 	centos/rhel 
+			
+			- Core Kubernetes Concepts 
+			
+				- Pod 
+					- Namespace
+				
+				- Controller Objects 
+					Replication Controller 
+					Replicaset
+					Deployments 
+					Daemonset
+					
+				Kubernetes Services 
+					ClusterIP Service 
+					NodePort Service 
+					Load Balancer Service 
+					
+				Kubernetes Volumes 		
+					EmptyDir Volume
+					Hostpath Volume 
+					ConfigMap Volume 
+					Secret 
+					Persistant Volume 
+					Persistant Volume Claim
+
+
+					
+		Fundamentals of Terraform!
+		
+			IAC Tools ::::
+			
+				Provision/Create 	- Terraform 
+				
+					Create 		EC2 
+					
+					Destroy 	EC2 
+					
+					Modify 	
+				
+				
+			Install Terraform in Local Machine :::
+			
+			Visual Studio Code 
+				
+				CMS 			 	- Ansible 
+		
+			- Architecture / Working Model of Terraform 
+			
+			- Implementation
+		
+		Fundamentals of Prometheus/Grafana!
