@@ -1,0 +1,238 @@
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = ""
+  secret_key = ""
+}
+
+# Create AWS Instance
+
+resource "aws_instance" "myinstance1" {
+  
+  ami           = "ami-02e64b011266ef128"
+  instance_type = "t3.micro"
+  key_name      = "loksaieta223key"
+  count			= 5
+
+  tags = {
+    Name = "my_Server"
+  }
+}
+
+resource "aws_instance" "myinstance2" {
+  
+  ami           = "ami-02e64b011266ef128"
+  instance_type = "t2.micro"
+  key_name      = "loksaieta223key"
+  count = 5
+  
+
+  tags = {
+    Name = "my_Server"
+  }
+}
+
+resource "aws_instance" "myinstance2" {
+  
+  ami           = "ami-02e64b011266ef128"
+  instance_type = "t2.medium"
+  key_name      = "loksaieta223key"
+
+  tags = {
+    Name = "my_Server"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+# Create AWS Instance
+
+resource "aws_instanceeee" "app_server2" {
+  ami           = "ami-06f7fbc41663e146f"
+  instance_type = "t2.micro"
+  key_name      = "loksaieta123"
+
+  tags = {
+    Name = "TerraformDemoServer2"
+  }
+}
+
+
+
++ => Add new resource
+~ => update any existing resource
+- => Delete any existing resource
+
+
+terraform init
+
+terraform plan
+
+terraform apply
+
+terraform destroy
+
+terraform state list
+
+terraform apply -auto-approve
+
+
+
+*****************************************************************************************
+
+
+
+
+Install Terraform --> Local Windows Machine!!!
+
+Use Command prompt to run Terraform commands like : terraform init, terraform plan, terraform apply, etc..
+
+Create the Config file ?
+
+Visual Studio Code  to create or develop Terraform Config files! i.e., *.tf files 
+
+
+
+
+
+
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "AKIAT6PG2XZ6L"
+  secret_key = "CRNKgg2"
+}
+
+# Create VPC
+
+resource "aws_vpc" "myvpc6" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "myvpc6"
+  }
+}
+
+# Create Subnet 
+
+resource "aws_subnet" "mysubnet6" {
+  vpc_id     = aws_vpc.myvpc6.id
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "mysubnet6"
+  }
+}
+
+# Internet Gateway
+
+resource "aws_internet_gateway" "mygw6" {
+  vpc_id = aws_vpc.myvpc6.id
+
+  tags = {
+    Name = "mygw6"
+  }
+}
+
+# Route Table
+
+resource "aws_route_table" "myrt6" {
+  vpc_id = aws_vpc.myvpc6.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.mygw6.id
+  }
+
+  tags = {
+    Name = "myrt6"
+  }
+}
+
+# Route Table Association
+
+resource "aws_route_table_association" "myrta6" {
+  subnet_id      = aws_subnet.mysubnet6.id
+  route_table_id = aws_route_table.myrt6.id
+}
+
+# Security Groups
+
+resource "aws_security_group" "mysg6" {
+  name        = "mysg6"
+  description = "Allow inbound traffic"
+  vpc_id      = aws_vpc.myvpc6.id
+
+  ingress {
+    description      = "HTTP"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description      = "SSH"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "mysg6"
+  }
+}
+
+# Create Instance
+
+resource "aws_instance" "instance6" {
+  ami           = "ami-06006e8b065b5bd46"
+  instance_type = "t2.micro"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.mysubnet6.id
+  vpc_security_group_ids = [aws_security_group.mysg6.id]
+  key_name = "loksaieta223key"
+
+  tags = {
+    Name = "Dummy_Server0"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`````
+# Create AWS Instance
+
+resource "aws_instance" "sa11instance1" {
+  ami           = "ami-012b6156f755804f5"
+  instance_type = "t2.micro"
+  key_name      = "loksaieta123v2"
+
+  tags = {
+    Name = "SA11-Dummy_Server0"
+  }
+}
