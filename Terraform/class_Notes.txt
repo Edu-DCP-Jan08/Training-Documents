@@ -1,0 +1,153 @@
+		Fundamentals of Terraform!
+		
+			IAC Tools ::::
+			
+				Provision/Create 	- Terraform 
+				
+					Create 		EC2 
+					
+					Destroy 	EC2 
+					
+					Modify 	
+				
+			Terraform Work flow ::
+			
+				- Scope - Identify the Infra-Structure 
+				- Write Terraform Script to define the Infra-Structure
+				- Initilize - Install the required Terraform Provider
+				- Plan - Preview the Changes that Terraform will make 
+				- Apply - Make the Changes to the Infra-Structure
+				
+				
+			Install Terraform in Local Machine :::
+			
+			Visual Studio Code 
+				
+				CMS 			 	- Ansible 
+		
+			- Architecture / Working Model of Terraform 
+			
+			- Implementation
+		
+		Fundamentals of Prometheus/Grafana!
+		
+		
+##################
+Day 18 - 1st Feb.
+##################	
+
+			Install Terraform in Local Machine :::
+				https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+					
+					Download the zip file 
+					Extract 
+					Define Environment Variable.
+					
+					Open Visual Studio Code.
+						- Install the Extension for Hashi-Corp - Terraform
+						
+					Create Project in Terraform
+							aws.tf
+					Open New Terminal 
+					terraform --version
+					
+					
+			Provisioning the AWS Resources using Terraform.
+					
+			Terraform Work flow ::
+			
+				- Scope - Identify the Infra-Structure 							# AWS Cloud 
+				- Write Terraform Script to define the Infra-Structure  *.tf
+				- Initilize - Install the required Terraform Provider
+				- Plan - Preview the Changes that Terraform will make 
+				- Apply - Make the Changes to the Infra-Structure	
+				
+				
+				AKIAUQXROF2JXPR6O7EX
+				
+				dBWsxytnMafiOO+x/1VdbGNXf/yfO08ZWwNq+3bj
+
+
+
+				+ => Add new resource
+				~ => update any existing resource
+				- => Delete any existing resource
+
+
+
+			terraform script -- ec2 -- 
+			
+
+			EC2 -- 
+			
+			State file in Terraform !!!!
+			
+			Project ::::
+			
+			Dynamic Server Provisioning 
+			
+				Test Servers 
+				
+			Terraform CLIs to create/destroy/update the aws resources. 
+			
+			
+			State file will be maintained in the local mchine 
+			
+			
+	CICD :::
+	
+	SCM_Checkout --> Build --> Create_QA_Server_using_TF / Config the Resource using Ansible --> Deploy --> QA_Test (Failed) - Notified
+	
+	Scenario 1 :
+	
+	Pipeline1:
+	SCM_Checkout --> Create_QA_Server_using_TF / Config the Resource using Ansible
+	
+	Build_Pipeline :
+	SCM_Checkout -> Build - Deploy toQA 
+			
+			
+	Manage TF Tools ::
+	
+	IAC ::
+	
+	Terraform --
+	
+		state file --> -- avoid duplicate resource definitions.
+		*.tf
+		Ansible Playbooks roles -- 		
+	
+	
+			
+			Monitoring Tool :::
+			
+			Infra-Structure Monitoring :::
+			
+				Fundamentals of Prometheus/Grafana :::
+				
+				Prometheus 	- Monitoring Tool 
+				Grafana		- Visualization Tool -- used to create Monitoring Dashboard
+				
+				Architecture of Prometheus Monitoring Tools 
+				
+					- Agent 
+					
+					- Data Retrival Component 
+					
+					- Time Series Database 
+					
+					- PromQL 
+					
+					- Grafana
+
+			1. Install Prometheus/Grafana :::
+			
+Next :::
+
+		Work with Prometheus & Grafana 
+		
+		Create Dashboard using Grafana 
+		
+		CICD Pipeline Demo 
+				
+				
