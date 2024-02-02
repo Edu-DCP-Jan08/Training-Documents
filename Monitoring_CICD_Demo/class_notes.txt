@@ -1,0 +1,98 @@
+##################
+Day 19 - 2nd Feb.
+##################	
+			Monitoring Tool :::
+			
+			Infra-Structure Monitoring :::
+			
+				Fundamentals of Prometheus/Grafana :::
+				
+				Prometheus 	- Monitoring Tool 
+				Grafana		- Visualization Tool -- used to create Monitoring Dashboard
+				
+				Architecture of Prometheus Monitoring Tools 
+				
+					- Agent 
+					
+					- Data Retrival Component 
+					
+					- Time Series Database 
+					
+					- PromQL 
+					
+					- Grafana
+
+			1. Install Prometheus/Grafana :::
+			
+Next :::
+
+		Work with Prometheus & Grafana 
+		
+		Create Dashboard using Grafana 
+		
+		CICD Pipeline Demo 
+				
+						
+		
+##################
+Day 19 - 2nd Feb.
+##################	
+		
+		Work with Prometheus & Grafana 
+		
+		Create Dashboard using Grafana using Prometheus :
+		
+		CICD Pipeline Demo ::::
+		
+		Automate Build and Deployments :::::
+		
+		
+		CICD Pipeline :::
+		
+			Stages ::::
+				- SCM_Checkout 
+				- Maven Build 		*.war - Artifacts 
+				- Docker Build 		--> Dockerfile ->   # Created and maintained in the src_code repo by the developer
+				- Push the Image to DockerHub 
+				- Deploy using kubernetes
+				
+		Detailed Assessment :::
+			- Infra-Structure :::
+			
+				Jenkins_Master 	(VM) 		- Create CICD Pipelines 			- git/jdk/jenkins 
+					Jenkins_Slave (VM)		- Pipelines are Executed Here 		- git/jdk/maven/Docker ==> *.war - Build_Docker Images 
+				Kubernetes_Master
+					Kubernetes_Worknode1
+					Kubernetes_Worknode2
+				
+		
+			Stages ::::
+			
+				- SCM_Checkout 
+				- Maven Build 		*.war - Artifacts 
+				- Docker Build 		--> Dockerfile ->   # Created and maintained in the src_code repo by the developer
+				- Push the Image to DockerHub 
+				- Deploy using kubernetes			
+
+
+				Kubernetes Manifest :
+				
+					Deployment 
+					Nodeport Service 
+			
+				
+				Approval thru. Jenkins :::
+				
+				Continuous Delivery / Deployment
+			
+		
+		
+		
+
+
+
+
+
+
+
+
